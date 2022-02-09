@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Circle Jump</title>
+    <link href="./style.css" rel"stylesheet">
+</head>
+<body>
+    <canvas id="canv">
+    <script src="time.js"></script>
+    <script src="scripts.js"></script>
+    </canvas>
+<script>
+    "use strict"
+
+    let mouseIsDown = false;
+    document.addEventListener("mousedown", mouseDown);
+    document.addEventListener("mouseup", mouseUp);
+
+    function mouseDown(){
+        mouseIsDown = true;
+    }
+
+    function mouseUp(){
+        mouseIsDown = false;
+    }
+
+
+    let canvas = document.querySelector("#canv");
+    let ctx = canvas.getContext("2d");
+
+    let circles = []
+
+    let x = 300;
+    let y = 300;
+    let r = 50;
+    let s = 0;
+    let e = Math.PI*2;
+    let c = "black";
+    let max = 1;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    for(let i = 0; i < max; i++){
+        let toAdd = {};
+        toAdd.x = x;
+        toAdd.y = y;
+        toAdd.r = r;
+        toAdd.s = s;
+        toAdd.e = e;
+        toAdd.c = c;
+        circles.push(toAdd)
+    }
+
+    let rectangles = []
+
+    let recX = 500;
+    let recY = 900;
+    let offsetX = 50;
+    let width = 10;
+    let height = 50;
+    let color = "brown";
+
+    for(let i = 0; i < max; i++){
+        let toAdd2 = {};
+        toAdd2.recX = recX;
+        toAdd2.recY = recY;
+        toAdd2.width = width;
+        toAdd2.height = height;
+        toAdd2.color = color;
+        rectangles.push(toAdd2)
+    }
+
+
+
+
+
+    function tick(){
+        update()
+        draw()
+    }
+    function update(){
+        let i = 0
+        for(let circle of circles) {
+            circle.c = "red";
+            if(mouseIsDown){ 
+                if(circle.y == 700)
+                {
+                    circle.c = "green";
+                    if(circle.x == 850)
+                    {
+                        circle.c = "green";
+                    }
+                    else{
+                        circle.x +=5;
+                    }
+                }
+                else{
+                    circle.c = "green";
+                    circle.y -= 5;
+                }
+            }
+            else{
+                if(circle.y == 900){
+                    circle.c = "red";
+                }
+                else{
+                    circle.c = "red";
+                    circle.y += 5;
+                }
+            }
+            i++;
+        }
+    }
+    function draw(){
+        ctx.fillStyle = "black"
+        ctx.strokeStyle = "white"
+        ctx.lineWidth = 10
+
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
+        let i = 0;
+        for(let circle of circles) {
+            let circle = circles[i];
+            ctx.fillStyle = circle.c
+            ctx.strokeStyle = "white"
+            ctx.beginPath()
+            ctx.arc(
+                circle.x,
+                circle.y,
+                circle.r,
+                circle.s,
+                circle.e
+            )
+            ctx.fill();
+            ctx.stroke();
+            i++;
+        }
+        let j = 0;
+        for(let rectangle of rectangles) {
+            let rectangle = rectangles[j];
+            ctx.fillStyle = rectangle.color
+            ctx.strokeStyle = "white"
+            ctx.beginPath()
+            ctx.rect(
+                rectangle.recX,
+                rectangle.recY,
+                rectangle.width,
+                rectangle.height,
+            )
+            ctx.fill();
+            ctx.stroke();
+            j++;
+        }
+        Time.timePassed += Time.secondsBetweenFrame;
+        
+    }
+    setInterval(tick, Time.millisecondsBetweenFrames)
+    </script>
+</body>
+</html>

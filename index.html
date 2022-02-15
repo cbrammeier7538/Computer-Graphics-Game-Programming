@@ -13,8 +13,14 @@
     "use strict"
 
     let mouseIsDown = false;
+    let aisPressed = false;
+    let sisPressed = true;
     document.addEventListener("mousedown", mouseDown);
     document.addEventListener("mouseup", mouseUp);
+    document.addEventListener("keydown", logKey);
+    document.addEventListener("keyup", logKey2);
+    document.addEventListener("keydown", logKey3);
+    document.addEventListener("keyup", logKey4);
 
     function mouseDown(){
         mouseIsDown = true;
@@ -22,6 +28,22 @@
 
     function mouseUp(){
         mouseIsDown = false;
+    }
+
+    function logKey(a){
+        aisPressed = true;
+    }
+
+    function logKey2(a){
+        aisPressed = false;
+    }
+    
+    function logKey3(s){
+        sisPressed = true;
+    }
+    
+    function logKey4(s){
+        sisPressed = false;
     }
 
 
@@ -58,20 +80,57 @@
     let width = 10;
     let height = 50;
     let color = "brown";
+    let max2 = 4;
 
-    for(let i = 0; i < max; i++){
+    for(let i = 0; i < max2; i++){
         let toAdd2 = {};
+        if(i == 1){
         toAdd2.recX = recX;
         toAdd2.recY = recY;
         toAdd2.width = width;
         toAdd2.height = height;
         toAdd2.color = color;
         rectangles.push(toAdd2)
+        }
+        if(i == 2){
+        toAdd2.recX = recX + 1000;
+        toAdd2.recY = recY;
+        toAdd2.width = width + 50;
+        toAdd2.height = height + 50;
+        toAdd2.color = "grey";
+        rectangles.push(toAdd2)
+        }
+        if(i == 3){
+        toAdd2.recX = recX + 500;
+        toAdd2.recY = recY;
+        toAdd2.width = width + 50;
+        toAdd2.height = height;
+        toAdd2.color = color;
+        rectangles.push(toAdd2)
+        }
     }
 
+    let bullets = []
 
+    let recX2 = 0;
+    let recY2 = 0;
+    let offsetX2 = 50;
+    let width2 = 100;
+    let height2 = 30;
+    let color2 = "red";
+    let max3 = 1;
 
-
+    function uploadBullet(){
+        for(let i = 0; i < max3; i++){
+            let toAdd3 = {}
+            toAdd3.recX = circle.x + 50;
+            toAdd3.recY = circle.y + 50;
+            toAdd3.width = width2;
+            toAdd3.height = height3;
+            toAdd3.color = color2;
+            bullets.push(toAdd3)
+        }
+    }
 
     function tick(){
         update()
@@ -82,20 +141,34 @@
         for(let circle of circles) {
             circle.c = "red";
             if(mouseIsDown){ 
-                if(circle.y == 700)
+                if(circle.y == 1000)
                 {
                     circle.c = "green";
-                    if(circle.x == 850)
+                    
+                    if(circle.x == 1650)
                     {
                         circle.c = "green";
                     }
                     else{
+                        if(aisPressed == true){
+                            circle.x -= 5;
+                        } 
+                        else{
                         circle.x +=5;
+                        }
                     }
                 }
                 else{
                     circle.c = "green";
                     circle.y -= 5;
+                    if(aisPressed == true){
+                        circle.c = "blue"
+                        circle.x -= 5;
+                    }
+                    else{
+                        circle.c = "green"
+                        circle.x += 5;
+                    }
                 }
             }
             else{

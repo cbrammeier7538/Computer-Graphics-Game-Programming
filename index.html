@@ -141,44 +141,67 @@
         for(let circle of circles) {
             circle.c = "red";
             if(mouseIsDown){ 
-                if(circle.y == 1000)
+                if(circle.y == 500)
                 {
                     circle.c = "green";
-                    
                     if(circle.x == 1650)
                     {
                         circle.c = "green";
                     }
                     else{
-                        if(aisPressed == true){
-                            circle.x -= 5;
-                        } 
-                        else{
                         circle.x +=5;
                         }
-                    }
                 }
                 else{
                     circle.c = "green";
-                    circle.y -= 5;
-                    if(aisPressed == true){
-                        circle.c = "blue"
-                        circle.x -= 5;
+                    if(circle.x == 1650)
+                    {
+                        circle.y -= 5;
                     }
                     else{
-                        circle.c = "green"
+                        circle.y -= 5;
                         circle.x += 5;
                     }
                 }
             }
+            else if(aisPressed){
+                if(circle.y == 500)
+                {
+                    circle.c = "blue";
+                    if(circle.x == 100)
+                    {
+                        circle.c = "blue";
+                    }
+                    else{
+                        circle.x -=5;
+                    }
+                }
+                else
+                {
+                    circle.c = "blue";
+                    if(circle.x == 100)
+                    {
+                        circle.c = "blue";
+                        circle.y -= 5;
+                    }
+                    else
+                    {
+                        circle.c = "blue";
+                        circle.y -= 5;
+                        circle.x -= 5;
+                    }
+                }
+            }
             else{
-                if(circle.y == 900){
                     circle.c = "red";
-                }
-                else{
-                    circle.c = "red";
-                    circle.y += 5;
-                }
+                    if(circle.y == 900)
+                    {
+                        circle.c = "red";
+                    }
+                    else
+                    {
+                        circle.y += 5;
+                    }
             }
             i++;
         }

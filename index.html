@@ -8,6 +8,7 @@
     <canvas id="canv">
     <script src="time.js"></script>
     <script src="scripts.js"></script>
+    <script src="Component.js"></script>
     </canvas>
 <script>
     "use strict"
@@ -123,14 +124,15 @@
     function uploadBullet(){
         for(let i = 0; i < max3; i++){
             let toAdd3 = {}
-            toAdd3.recX = circle.x + 50;
-            toAdd3.recY = circle.y + 50;
-            toAdd3.width = width2;
-            toAdd3.height = height3;
-            toAdd3.color = color2;
+            toAdd3.recX2 = 300;
+            toAdd3.recY2 = 300;
+            toAdd3.width2 = width2;
+            toAdd3.height2 = height2;
+            toAdd3.color2 = color2;
             bullets.push(toAdd3)
         }
     }
+    
 
     function tick(){
         update()
@@ -205,6 +207,23 @@
             }
             i++;
         }
+        let j = 0;
+        for(let bullet of bullets){
+        if(sisPressed){
+            if(bullet.recX2 == 300)
+            {
+                while(bullet.recX2 != 1650){
+                bullet.recX2 += 10;
+                }
+            }
+            else if(bullet.recX2 == 1650)
+            {
+                while(bullet.recX2 != 300){
+                    bullet.recX2 -= 10;
+                }
+            }
+        }
+        }
     }
     function draw(){
         ctx.fillStyle = "black"
@@ -245,6 +264,22 @@
             ctx.fill();
             ctx.stroke();
             j++;
+        }
+        let k = 0;
+        for(let bullet of bullets) {
+            let bullet = bullets[k];
+            ctx.fillStyle = bullet.color2;
+            ctx.strokeStyle = "white"
+            ctx.beginPath()
+            ctx.rect(
+                bullet.recX2,
+                bullet.recY2,
+                bullet.width2,
+                bullet.height2
+            )
+            ctx.fill();
+            ctx.stroke();
+            k++;
         }
         Time.timePassed += Time.secondsBetweenFrame;
         

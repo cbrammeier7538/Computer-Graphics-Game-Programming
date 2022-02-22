@@ -9,6 +9,10 @@
     <script src="time.js"></script>
     <script src="scripts.js"></script>
     <script src="Component.js"></script>
+    <script src="GameObject.js"></script>
+    <script src="CircleDrawComponent.js"></script>
+    <script src="CircleUpdateComponent.js"></script>
+    <script src="CircleGameObject.js"></script>
     </canvas>
 <script>
     "use strict"
@@ -48,29 +52,19 @@
     }
 
 
-    let canvas = document.querySelector("#canv");
-    let ctx = canvas.getContext("2d");
+    let { canvas, ctx } = getCanvas();
 
     let circles = []
 
-    let x = 300;
-    let y = 300;
-    let r = 50;
-    let s = 0;
-    let e = Math.PI*2;
-    let c = "black";
-    let max = 1;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
     for(let i = 0; i < max; i++){
-        let toAdd = {};
-        toAdd.x = x;
-        toAdd.y = y;
-        toAdd.r = r;
-        toAdd.s = s;
-        toAdd.e = e;
-        toAdd.c = c;
-        circles.push(toAdd)
+        let x = 300;
+        let y = 300;
+        let r = 50;
+        let s = 0;
+        let e = Math.PI*2;
+        let c = "black";
+        let max = 1;
+        circles.push(new CircleGameObject(x,y,r,s,e,c))
     }
 
     let rectangles = []
@@ -137,75 +131,12 @@
     function tick(){
         update()
         draw()
+        Time.timePassed += Time.secondsBetweenFrame;
     }
     function update(){
         let i = 0
         for(let circle of circles) {
-            circle.c = "red";
-            if(mouseIsDown){ 
-                if(circle.y == 500)
-                {
-                    circle.c = "green";
-                    if(circle.x == 1650)
-                    {
-                        circle.c = "green";
-                    }
-                    else{
-                        circle.x +=5;
-                        }
-                }
-                else{
-                    circle.c = "green";
-                    if(circle.x == 1650)
-                    {
-                        circle.y -= 5;
-                    }
-                    else{
-                        circle.y -= 5;
-                        circle.x += 5;
-                    }
-                }
-            }
-            else if(aisPressed){
-                if(circle.y == 500)
-                {
-                    circle.c = "blue";
-                    if(circle.x == 100)
-                    {
-                        circle.c = "blue";
-                    }
-                    else{
-                        circle.x -=5;
-                    }
-                }
-                else
-                {
-                    circle.c = "blue";
-                    if(circle.x == 100)
-                    {
-                        circle.c = "blue";
-                        circle.y -= 5;
-                    }
-                    else
-                    {
-                        circle.c = "blue";
-                        circle.y -= 5;
-                        circle.x -= 5;
-                    }
-                }
-            }
-            else{
-                    circle.c = "red";
-                    if(circle.y == 900)
-                    {
-                        circle.c = "red";
-                    }
-                    else
-                    {
-                        circle.y += 5;
-                    }
-            }
-            i++;
+            circle.update();
         }
         let j = 0;
         for(let bullet of bullets){
@@ -234,20 +165,7 @@
         ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
         let i = 0;
         for(let circle of circles) {
-            let circle = circles[i];
-            ctx.fillStyle = circle.c
-            ctx.strokeStyle = "white"
-            ctx.beginPath()
-            ctx.arc(
-                circle.x,
-                circle.y,
-                circle.r,
-                circle.s,
-                circle.e
-            )
-            ctx.fill();
-            ctx.stroke();
-            i++;
+            circle.draw(ctx);
         }
         let j = 0;
         for(let rectangle of rectangles) {

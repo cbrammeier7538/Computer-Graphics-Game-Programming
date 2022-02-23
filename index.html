@@ -55,15 +55,14 @@
     let { canvas, ctx } = getCanvas();
 
     let circles = []
-
-    for(let i = 0; i < max; i++){
+    let singlecirc = 1;
+    for(let i = 0; i < singlecirc; i++){
         let x = 300;
         let y = 300;
         let r = 50;
         let s = 0;
         let e = Math.PI*2;
         let c = "black";
-        let max = 1;
         circles.push(new CircleGameObject(x,y,r,s,e,c))
     }
 

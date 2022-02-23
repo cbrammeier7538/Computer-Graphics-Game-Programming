@@ -3,7 +3,7 @@ class CircleGameObject extends GameObject{
         super();
         this.components.push(new CircleGameObject(this,x,y,r,s,e,c));
         this.components.push(new CircleDrawComponent(this));
-        
+        return;
     }
     update(){
         this.components.filter(c=>c.update).forEach(c=>c.update());

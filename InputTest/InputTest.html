@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rectangle Move</title>
+    <link href = "./style.css" rel"stylesheet">
+</head>
+<body>
+    <canvas id = "canv">
+    <script src = "Time.js"></script>
+    </canvas>
+<script>
+    "use strict"
+
+    let wisPressed = false;
+    let aisPressed = false;
+    let sisPressed = false;
+    let disPressed = false;
+    document.addEventListener("keydown", logkeydown);
+    document.addEventListener("keyup", logkeyup);
+    function logkeydown(a){
+        if(a.key == "w")
+        {
+            wisPressed = true;
+        }
+        if(a.key == "a")
+        {
+            aisPressed = true;
+        }
+        if(a.key == "s")
+        {
+            sisPressed = true;
+        }
+        if(a.key == "d")
+        {
+            disPressed = true;
+        }
+    }
+    function logkeyup(a){
+        if(a.key == "w")
+        {
+            wisPressed = false;
+        }
+        if(a.key == "a")
+        {
+            aisPressed = false;
+        }
+        if(a.key == "s")
+        {
+            sisPressed = false;
+        }
+        if(a.key == "d")
+        {
+            disPressed = false;
+        }
+    }
+    let canvas = document.querySelector("#canv");
+    let ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let rectangles = []
+    let x = 500;
+    let y = 500;
+    let offsetx = 50;
+    let width = 50;
+    let height = 50;
+    let color = "black";
+    let max = 1;
+    for(let i = 0; i < max; i++){
+        let toAdd = {};
+        toAdd.x = x;
+        toAdd.y = y;
+        toAdd.width = width;
+        toAdd.height = height;
+        toAdd.color = color;
+        rectangles.push(toAdd)
+    }
+    function tick(){
+        update()
+        draw()
+        Time.timePassed += Time.secondsBetweenFrame;
+    }
+    function update(){
+        let i = 0
+        for(let rectangle of rectangles){
+            rectangle.color = "black"
+            if(wisPressed){
+                rectangle.y -= 5;
+                rectangle.color = "green"
+            }
+            if(aisPressed){
+                rectangle.x -= 5;
+                rectangle.color = "yellow"
+            }
+            if(sisPressed){
+                rectangle.y += 5;
+                rectangle.color = "blue"
+            }
+            if(disPressed){
+                rectangle.x += 5;
+                rectangle.color = "red"
+            }
+        }
+    }
+    function draw(){
+        ctx.fillStyle = "white"
+        ctx.strokeStyle = "black"
+        ctx.lineWidth = 5
+
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
+        let i = 0;
+        for(let rectangle of rectangles){
+            let rectangle = rectangles[i];
+            ctx.fillStyle = rectangle.color
+            ctx.strokeStyle = "white"
+            ctx.beginPath()
+            ctx.rect(
+                rectangle.x,
+                rectangle.y,
+                rectangle.width,
+                rectangle.height
+            )
+            ctx.fill();
+            ctx.stroke();
+            i++;
+        }
+        Time.timePassed += Time.secondsBetweenFrame;
+    }
+    setInterval(tick, Time.millisecondsBetweenFrames)
+
+
+    </script>
+</body>
+</html>

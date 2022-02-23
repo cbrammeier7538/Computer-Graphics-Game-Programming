@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Circle Jump</title>
+    <link href="./style.css" rel"stylesheet">
+</head>
+<body>
+    <canvas id="canv">
+    <script src="time.js"></script>
+    <script src="scripts.js"></script>
+    <script src="Component.js"></script>
+    <script src="GameObject.js"></script>
+    <script src="CircleDrawComponent.js"></script>
+    <script src="CircleUpdateComponent.js"></script>
+    <script src="CircleGameObject.js"></script>
+    </canvas>
+<script>
+    "use strict"
+
+    let mouseIsDown = false;
+    let aisPressed = false;
+    let sisPressed = true;
+    document.addEventListener("mousedown", mouseDown);
+    document.addEventListener("mouseup", mouseUp);
+    document.addEventListener("keydown", logKey);
+    document.addEventListener("keyup", logKey2);
+    document.addEventListener("keydown", logKey3);
+    document.addEventListener("keyup", logKey4);
+
+    function mouseDown(){
+        mouseIsDown = true;
+    }
+
+    function mouseUp(){
+        mouseIsDown = false;
+    }
+
+    function logKey(a){
+        aisPressed = true;
+    }
+
+    function logKey2(a){
+        aisPressed = false;
+    }
+    
+    function logKey3(s){
+        sisPressed = true;
+    }
+    
+    function logKey4(s){
+        sisPressed = false;
+    }
+
+
+    let { canvas, ctx } = getCanvas();
+
+    let circles = []
+    let singlecirc = 1;
+    for(let i = 0; i < singlecirc; i++){
+        let toAdd = {}
+        toAdd.x = x;
+        toAdd.y = y;
+        toAdd.r = r;
+        toAdd.s = s;
+        toAdd.e = e;
+        toAdd.c = c;
+        circles.push(new CircleGameObject(toAdd))
+    }
+
+    let rectangles = []
+
+    let recX = 500;
+    let recY = 900;
+    let offsetX = 50;
+    let width = 10;
+    let height = 50;
+    let color = "brown";
+    let max2 = 4;
+
+    for(let i = 0; i < max2; i++){
+        let toAdd2 = {};
+        if(i == 1){
+        toAdd2.recX = recX;
+        toAdd2.recY = recY;
+        toAdd2.width = width;
+        toAdd2.height = height;
+        toAdd2.color = color;
+        rectangles.push(toAdd2)
+        }
+        if(i == 2){
+        toAdd2.recX = recX + 1000;
+        toAdd2.recY = recY;
+        toAdd2.width = width + 50;
+        toAdd2.height = height + 50;
+        toAdd2.color = "grey";
+        rectangles.push(toAdd2)
+        }
+        if(i == 3){
+        toAdd2.recX = recX + 500;
+        toAdd2.recY = recY;
+        toAdd2.width = width + 50;
+        toAdd2.height = height;
+        toAdd2.color = color;
+        rectangles.push(toAdd2)
+        }
+    }
+
+    let bullets = []
+
+    let recX2 = 0;
+    let recY2 = 0;
+    let offsetX2 = 50;
+    let width2 = 100;
+    let height2 = 30;
+    let color2 = "red";
+    let max3 = 1;
+
+    function uploadBullet(){
+        for(let i = 0; i < max3; i++){
+            let toAdd3 = {}
+            toAdd3.recX2 = 300;
+            toAdd3.recY2 = 300;
+            toAdd3.width2 = width2;
+            toAdd3.height2 = height2;
+            toAdd3.color2 = color2;
+            bullets.push(toAdd3)
+        }
+    }
+    
+
+    function tick(){
+        update()
+        draw()
+        Time.timePassed += Time.secondsBetweenFrame;
+    }
+    function update(){
+        let i = 0
+        for(let circle of circles) {
+            circle.update();
+        }
+        let j = 0;
+        for(let bullet of bullets){
+        if(sisPressed){
+            if(bullet.recX2 == 300)
+            {
+                while(bullet.recX2 != 1650){
+                bullet.recX2 += 10;
+                }
+            }
+            else if(bullet.recX2 == 1650)
+            {
+                while(bullet.recX2 != 300){
+                    bullet.recX2 -= 10;
+                }
+            }
+        }
+        }
+    }
+    function draw(){
+        ctx.fillStyle = "black"
+        ctx.strokeStyle = "white"
+        ctx.lineWidth = 10
+
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
+        let i = 0;
+        for(let circle of circles) {
+            circle.draw(ctx);
+            i++;
+        }
+        let j = 0;
+        for(let rectangle of rectangles) {
+            let rectangle = rectangles[j];
+            ctx.fillStyle = rectangle.color
+            ctx.strokeStyle = "white"
+            ctx.beginPath()
+            ctx.rect(
+                rectangle.recX,
+                rectangle.recY,
+                rectangle.width,
+                rectangle.height,
+            )
+            ctx.fill();
+            ctx.stroke();
+            j++;
+        }
+        let k = 0;
+        for(let bullet of bullets) {
+            let bullet = bullets[k];
+            ctx.fillStyle = bullet.color2;
+            ctx.strokeStyle = "white"
+            ctx.beginPath()
+            ctx.rect(
+                bullet.recX2,
+                bullet.recY2,
+                bullet.width2,
+                bullet.height2
+            )
+            ctx.fill();
+            ctx.stroke();
+            k++;
+        }
+        Time.timePassed += Time.secondsBetweenFrame;
+        
+    }
+    setInterval(tick, Time.millisecondsBetweenFrames)
+    </script>
+</body>
+</html>

@@ -9,3 +9,4 @@ class GameObject{
         this.components.filter(c=>c.draw).forEach(c=>c.draw());
     }
 }
+

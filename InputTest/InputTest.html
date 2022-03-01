@@ -7,6 +7,11 @@
 <body>
     <canvas id = "canv">
     <script src = "Time.js"></script>
+    <script src = "GameObject.js"></script>
+    <script src = "Component.js"></script>
+    <script src = "RectangleDrawComponent.js"></script>
+    <script src = "RectangleUpdateComponent.js"></script>
+    <script src = "RectangleGameObject.js"></script>
     </canvas>
 <script>
     "use strict"
@@ -60,13 +65,6 @@
     canvas.height = window.innerHeight;
 
     let rectangles = []
-    let x = 500;
-    let y = 500;
-    let offsetx = 50;
-    let width = 50;
-    let height = 50;
-    let color = "black";
-    let max = 1;
     for(let i = 0; i < max; i++){
         let toAdd = {};
         toAdd.x = x;
@@ -74,7 +72,7 @@
         toAdd.width = width;
         toAdd.height = height;
         toAdd.color = color;
-        rectangles.push(toAdd)
+        rectangles.push(new RectangleGameObject(toAdd));
     }
     function tick(){
         update()
@@ -84,23 +82,7 @@
     function update(){
         let i = 0
         for(let rectangle of rectangles){
-            rectangle.color = "black"
-            if(wisPressed){
-                rectangle.y -= 5;
-                rectangle.color = "green"
-            }
-            if(aisPressed){
-                rectangle.x -= 5;
-                rectangle.color = "yellow"
-            }
-            if(sisPressed){
-                rectangle.y += 5;
-                rectangle.color = "blue"
-            }
-            if(disPressed){
-                rectangle.x += 5;
-                rectangle.color = "red"
-            }
+            rectangle.update();
         }
     }
     function draw(){
@@ -112,19 +94,7 @@
         ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
         let i = 0;
         for(let rectangle of rectangles){
-            let rectangle = rectangles[i];
-            ctx.fillStyle = rectangle.color
-            ctx.strokeStyle = "white"
-            ctx.beginPath()
-            ctx.rect(
-                rectangle.x,
-                rectangle.y,
-                rectangle.width,
-                rectangle.height
-            )
-            ctx.fill();
-            ctx.stroke();
-            i++;
+            rectangle.draw(ctx);
         }
         Time.timePassed += Time.secondsBetweenFrame;
     }

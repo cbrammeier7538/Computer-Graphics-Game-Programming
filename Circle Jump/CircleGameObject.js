@@ -4,7 +4,7 @@ class CircleGameObject extends GameObject{
         let singlecirc = 1;
         for(var i = 0; i < singlecirc; i++)
         {
-        this.components.push(new CircleGameObject(this,x,y,r,s,e,c));
+        this.components.push(new CircleUpdateComponent(this,x,y,r,s,e,c));
         this.components.push(new CircleDrawComponent(this));
         }
     }

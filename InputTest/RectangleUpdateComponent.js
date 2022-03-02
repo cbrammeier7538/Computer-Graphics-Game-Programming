@@ -15,22 +15,22 @@ class RectangleUpdateComponent extends Component{
         this.color = color;
     }
     update(){
-        rectangle.color = "black"
+        this.color = "black"
         if(wisPressed){
-            rectangle.y -= 5;
-            rectangle.color = "green"
+            this.y -= 5;
+            this.color = "green"
         }
         if(aisPressed){
-            rectangle.x -= 5;
-            rectangle.color = "yellow"
+            this.x -= 5;
+            this.color = "yellow"
         }
         if(sisPressed){
-            rectangle.y += 5;
-            rectangle.color = "blue"
+            this.y += 5;
+            this.color = "blue"
         }
         if(disPressed){
-            rectangle.x += 5;
-            rectangle.color = "red"
+            this.x += 5;
+            this.color = "red"
         }
     }
 }

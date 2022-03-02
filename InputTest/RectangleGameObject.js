@@ -1,7 +1,7 @@
 class RectangleGameObject extends GameObject{
     constructor(x,y,width,height,color){
         super();
-        this.components.push(new RectangleGameObject(this,x,y,width,height,color));
+        this.components.push(new RectangleUpdateComponent(this,x,y,width,height,color));
         this.components.push(new RectangleDrawComponent(this));
     }
     update(){

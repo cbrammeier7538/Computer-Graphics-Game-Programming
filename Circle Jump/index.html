@@ -5,15 +5,14 @@
     <link href="./style.css" rel"stylesheet">
 </head>
 <body>
-    <canvas id="canv">
-    <script src="time.js"></script>
+    <canvas id="canv"></canvas>
     <script src="scripts.js"></script>
+    <script src="time.js"></script>
     <script src="Component.js"></script>
     <script src="GameObject.js"></script>
     <script src="CircleDrawComponent.js"></script>
     <script src="CircleUpdateComponent.js"></script>
     <script src="CircleGameObject.js"></script>
-    </canvas>
 <script>
     "use strict"
 
@@ -64,7 +63,7 @@
         toAdd.s = s;
         toAdd.e = e;
         toAdd.c = c;
-        circles.push(new CircleGameObject(toAdd))
+        circles.push(new CircleGameObject(toAdd.x,toAdd.y,toAdd.r,toAdd.s,toAdd.e,toAdd.c));
     }
 
     let rectangles = []

@@ -4,7 +4,7 @@ let offsetx = 50;
 let width = 50;
 let height = 50;
 let color = "black";
-let max = 1;
+let max = 2;
 class RectangleUpdateComponent extends Component{
     constructor(parent, x, y, width, height, color){
         super(parent);
@@ -14,7 +14,7 @@ class RectangleUpdateComponent extends Component{
         this.height = height;
         this.color = color;
     }
-    update(){
+    update() {
         this.color = "black"
         if(wisPressed){
             this.y -= 5;

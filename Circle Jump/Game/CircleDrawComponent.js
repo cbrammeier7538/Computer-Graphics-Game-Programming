@@ -1,3 +1,9 @@
+import Component from "../Engine/Component.js"
+import GameObject from "../Engine/GameObject.js"
+import CircleUpdateComponent from "./CircleUpdateComponent.js"
+
+
+
 class CircleDrawComponent extends Component {
     constructor(parent) {
         super(parent);
@@ -20,3 +26,5 @@ class CircleDrawComponent extends Component {
         ctx.stroke();
     }
 }
+
+export default CircleDrawComponent;

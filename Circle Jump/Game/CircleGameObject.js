@@ -1,3 +1,10 @@
+import Component from "../Engine/Component.js"
+import GameObject from "../Engine/GameObject.js"
+import CircleUpdateComponent from "./CircleUpdateComponent.js";
+import CircleDrawComponent from "./CircleDrawComponent.js";
+
+
+
 class CircleGameObject extends GameObject{
     constructor(x,y,r,s,e,c){
         super();
@@ -15,3 +22,5 @@ class CircleGameObject extends GameObject{
         this.components.filter(c=>c.draw).forEach(c=>c.draw(ctx));
     }
 }
+
+export default CircleGameObject;

@@ -1,10 +1,19 @@
-let x = 300;
-let y = 300;
-let r = 50;
-let s = 0;
-let e = Math.PI*2;
-let c = "black";
-let max = 1;
+import Component from "../Engine/Component.js"
+import Constants from "./Constants.js"
+import Time from "../Engine/Time.js"
+
+
+
+
+
+
+let x = Constants.x;
+let y = Constants.y;
+let r = Constants.r;
+let s = Constants.s;
+let e = Constants.e;
+let c = Constants.c;
+let max = Constants.max;
 
 class CircleUpdateComponent extends Component{
     constructor(parent, x, y, r, s, e, c){
@@ -83,3 +92,5 @@ class CircleUpdateComponent extends Component{
     }
     }
 }
+
+export default CircleUpdateComponent;

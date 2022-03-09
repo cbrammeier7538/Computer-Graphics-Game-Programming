@@ -1,6 +1,7 @@
 import Component from "../Engine/Component.js"
 import Constants from "./Constants.js"
 import Time from "../Engine/Time.js"
+import Input from "../Engine/Input.js"
 
 
 
@@ -27,7 +28,8 @@ class CircleUpdateComponent extends Component{
     }
     update(){
         this.c = "red";
-        if(mouseIsDown){ 
+        Input.getKeyDown(e);
+        if(Input.getMouseButton(0) > 0){ 
             if(this.y == 500)
             {
                 this.c = "green";
@@ -35,9 +37,10 @@ class CircleUpdateComponent extends Component{
                 {
                     this.c = "green";
                 }
-                else{
+                else
+                {
                     this.x +=5;
-                    }
+                }
             }
             else{
                 this.c = "green";
@@ -45,13 +48,14 @@ class CircleUpdateComponent extends Component{
                 {
                     this.y -= 5;
                 }
-                else{
+                else
+                {
                     this.y -= 5;
                     this.x += 5;
                 }
             }
         }
-        else if(aisPressed){
+        else if(Input.keysDown["a"] == true){
             if(this.y == 500)
             {
                 this.c = "blue";
@@ -59,7 +63,8 @@ class CircleUpdateComponent extends Component{
                 {
                     this.c = "blue";
                 }
-                else{
+                else
+                {
                     this.x -=5;
                 }
             }

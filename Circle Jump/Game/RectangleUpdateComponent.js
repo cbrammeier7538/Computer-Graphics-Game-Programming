@@ -26,4 +26,4 @@ class RectangleUpdateComponent extends Component{
     }
 }
 
-export default CircleUpdateComponent;
+export default RectangleUpdateComponent;

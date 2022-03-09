@@ -22,4 +22,4 @@ class RectangleDrawComponent extends Component {
     }
 }
 
-export default CircleDrawComponent;
+export default RectangleDrawComponent;

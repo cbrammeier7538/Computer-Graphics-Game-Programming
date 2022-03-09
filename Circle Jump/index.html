@@ -12,10 +12,10 @@
     <script src="./Engine/GameObject.js"></script>
     <script src="./Game/CircleDrawComponent.js"></script>
     <script src="./Game/CircleUpdateComponent.js"></script>
-    <script src="./Game/CircleGameObject.js"></script>-->
+    <script src="./Game/CircleGameObject.js"></script>
     <script src="RectangleDrawComponent.js"></script>
     <script src="RectangleGameObject.js"></script>
-    <script src="RectangleUpdateComponent.js"></script>
+    <script src="RectangleUpdateComponent.js"></script>-->
 <script type = "module">
     "use strict"
 
@@ -23,6 +23,8 @@
     import Time from "./Engine/Time.js"
     import GameObject from "./Engine/GameObject.js"
     import Component from "./Engine/Component.js"
+    import Input from "./Engine/Input.js"
+
     import CircleDrawComponent from "./Game/CircleDrawComponent.js"
     import CircleGameObject from "./Game/CircleGameObject.js";
     import CircleUpdateComponent from "./Game/CircleUpdateComponent.js";
@@ -31,40 +33,9 @@
     import RectangleUpdateComponent from "./Game/RectangleUpdateComponent.js";
 
     import Constants from "./Game/Constants.js"
+    import Constants2 from "./Game/Constants2.js"
 
-    let mouseIsDown = false;
-    let aisPressed = false;
-    let sisPressed = true;
-    document.addEventListener("mousedown", mouseDown);
-    document.addEventListener("mouseup", mouseUp);
-    document.addEventListener("keydown", logKey);
-    document.addEventListener("keyup", logKey2);
-    document.addEventListener("keydown", logKey3);
-    document.addEventListener("keyup", logKey4);
-
-    function mouseDown(){
-        mouseIsDown = true;
-    }
-
-    function mouseUp(){
-        mouseIsDown = false;
-    }
-
-    function logKey(a){
-        aisPressed = true;
-    }
-
-    function logKey2(a){
-        aisPressed = false;
-    }
-    
-    function logKey3(s){
-        sisPressed = true;
-    }
-    
-    function logKey4(s){
-        sisPressed = false;
-    }
+    Input.attach(document);
 
 
     let { canvas, ctx } = getCanvas();
@@ -91,6 +62,11 @@
 
     let rectangles = []
     let max2 = 1;
+    let recX = Constants2.recX;
+    let recY = Constants2.recY;
+    let width = Constants2.width;
+    let height = Constants2.height;
+    let color = Constants2.color;
     for(let i = 0; i < max2; i++){
         let toAdd2 = {};
         toAdd2.recX = recX;
@@ -137,6 +113,7 @@
     
 
     function tick(){
+        Input.update();
         update()
         draw()
         Time.timePassed += Time.secondsBetweenFrame;

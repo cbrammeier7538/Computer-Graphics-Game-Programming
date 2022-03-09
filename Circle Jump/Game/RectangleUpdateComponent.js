@@ -1,9 +1,13 @@
-let recX = 500;
-let recY = 900;
-let offsetX = 50;
-let width = 10;
-let height = 50;
-let color = "brown";
+import Component from "../Engine/Component.js"
+import Constants2 from "./Constants2.js"
+import Time from "../Engine/Time.js"
+
+let recX = Constants2.recX;
+let recY = Constants2.recY;
+let offsetX = Constants2.offsetX;
+let width = Constants2.width;
+let height = Constants2.height;
+let color = Constants2.color;
 class RectangleUpdateComponent extends Component{
     constructor(parent, recX, recY, width, height, color){
         super(parent);
@@ -21,3 +25,5 @@ class RectangleUpdateComponent extends Component{
         this.color = color;
     }
 }
+
+export default CircleUpdateComponent;

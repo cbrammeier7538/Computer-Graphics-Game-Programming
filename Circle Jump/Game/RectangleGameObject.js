@@ -1,3 +1,7 @@
+import Component from "../Engine/Component.js"
+import GameObject from "../Engine/GameObject.js"
+import RectangleUpdateComponent from "./RectangleUpdateComponent.js";
+import RectangleDrawComponent from "./RectangleDrawComponent.js";
 class RectangleGameObject extends GameObject{
     constructor(x,y,width,height,color){
         super();
@@ -11,3 +15,5 @@ class RectangleGameObject extends GameObject{
         this.components.filter(c=>c.draw).forEach(c=>c.draw(ctx));
     }
 }
+
+export default RectangleGameObject;

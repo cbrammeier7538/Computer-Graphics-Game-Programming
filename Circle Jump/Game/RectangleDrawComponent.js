@@ -1,3 +1,6 @@
+import Component from "../Engine/Component.js"
+import GameObject from "../Engine/GameObject.js"
+import RectangleUpdateComponent from "./RectangleUpdateComponent.js"
 class RectangleDrawComponent extends Component {
     constructor(parent) {
         super(parent);
@@ -18,3 +21,5 @@ class RectangleDrawComponent extends Component {
         ctx.stroke();
     }
 }
+
+export default CircleDrawComponent;

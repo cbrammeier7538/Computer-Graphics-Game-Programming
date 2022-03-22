@@ -8,6 +8,9 @@ class GameObject{
     draw(ctx){
         this.components.filter(c=>c.draw).forEach(c=>c.draw());
     }
+    getComponent(componentString){
+        return this.components.find(c=>c.constructor.name == componentString);
+    }
 }
 
 export default GameObject;

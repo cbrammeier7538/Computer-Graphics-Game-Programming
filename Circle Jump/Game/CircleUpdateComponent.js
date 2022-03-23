@@ -24,21 +24,21 @@ class CircleUpdateComponent extends Component{
         this.r = r;
         this.s = s;
         this.e = e;
-        this.c = c;
+        
     }
     update(){
 
         let circle = this.parent.getComponent("Circle");
         let circleDraw = this.parent.getComponent("CircleDrawComponent");
-        circleDraw.c = "red";
+        circleDraw.fillStyle = "red";
         Input.getKeyDown(e);
         if(Input.getMouseButton(0) > 0){ 
             if(circle.y == 500)
             {
-                circleDraw.c = "green";
+                circleDraw.fillStyle = "green";
                 if(circle.x == 1650)
                 {
-                    circleDraw.c = "green";
+                    circleDraw.fillStyle = "green";
                 }
                 else
                 {
@@ -46,7 +46,7 @@ class CircleUpdateComponent extends Component{
                 }
             }
             else{
-                circleDraw.c = "green";
+                circleDraw.fillStyle = "green";
                 if(circle.x == 1650)
                 {
                     circle.y -= 5;
@@ -61,10 +61,10 @@ class CircleUpdateComponent extends Component{
         else if(Input.keys["a"] == true){
             if(circle.y == 500)
             {
-                circleDraw.c = "blue";
+                circleDraw.fillStyle = "blue";
                 if(circle.x == 100)
                 {
-                    circleDraw.c = "blue";
+                    circleDraw.fillStyle = "blue";
                 }
                 else
                 {
@@ -73,25 +73,25 @@ class CircleUpdateComponent extends Component{
             }
             else
             {
-                circleDraw.c = "blue";
+                circleDraw.fillStyle = "blue";
                 if(circle.x == 100)
                 {
-                    circleDraw.c = "blue";
+                    circleDraw.fillStyle = "blue";
                     circle.y -= 5;
                 }
                 else
                 {
-                    circleDraw.c = "blue";
+                    circleDraw.fillStyle = "blue";
                     circle.y -= 5;
                     circle.x -= 5;
                 }
             }
         }
         else{
-                circleDraw.c = "red";
+                circleDraw.fillStyle = "red";
                 if(circle.y == 900)
                 {
-                    circleDraw.c = "red";
+                    circleDraw.fillStyle = "red";
                 }
                 else
                 {

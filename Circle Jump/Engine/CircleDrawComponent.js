@@ -1,6 +1,5 @@
 import Component from "./Component.js"
-import GameObject from "./GameObject.js"
-import CircleUpdateComponent from "../Game/CircleUpdateComponent.js"
+
 
 
 
@@ -18,11 +17,11 @@ class CircleDrawComponent extends Component {
 
         ctx.beginPath()
         ctx.arc(
-            updateComponent.x,
-            updateComponent.y,
-            updateComponent.r,
-            updateComponent.s,
-            updateComponent.e
+            circle.x,
+            circle.y,
+            circle.r,
+            circle.s,
+            circle.e
         )
         ctx.fill();
         ctx.stroke();

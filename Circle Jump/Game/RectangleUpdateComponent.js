@@ -16,13 +16,16 @@ class RectangleUpdateComponent extends Component{
         this.width = width;
         this.height = height;
         this.color = color;
+        
     }
     update(){
-        this.recX = recX;
-        this.recY = recY;
-        this.width = width;
-        this.height = height;
-        this.color = color;
+        let rectangle = this.parent.getComponent("Rectangle");
+        let rectangleDraw = this.parent.getComponent("RectangleDrawComponent");
+        rectangle.recX = this.recX;
+        rectangle.recY = this.recY;
+        rectangle.width = this.width;
+        rectangle.height = this.height;
+        rectangleDraw.fillStyle = this.color;
     }
 }
 

@@ -23,10 +23,10 @@
     import Time from "./Engine/Time.js"
     import Input from "./Engine/Input.js"
     import CircleGameObject from "./Game/CircleGameObject.js";
-    import CircleUpdateComponent from "./Game/CircleUpdateComponent.js";
-    import RectangleDrawComponent from "./Game/RectangleDrawComponent.js"
+    //import CircleUpdateComponent from "./Game/CircleUpdateComponent.js";
+    //import RectangleDrawComponent from "./Engine/RectangleDrawComponent.js"
     import RectangleGameObject from "./Game/RectangleGameObject.js";
-    import RectangleUpdateComponent from "./Game/RectangleUpdateComponent.js";
+    //import RectangleUpdateComponent from "./Game/RectangleUpdateComponent.js";
 
     import Constants from "./Game/Constants.js"
     import Constants2 from "./Game/Constants2.js"
@@ -39,6 +39,10 @@
     let gameObjects = []
 
     gameObjects.push(new CircleGameObject(Constants.x,Constants.y,Constants.r,Constants.s,Constants.e,Constants.c));
+    gameObjects.push(new RectangleGameObject(Constants2.recX,Constants2.recY,Constants2.width,Constants2.height,Constants2.color));
+    gameObjects.push(new RectangleGameObject(Constants2.recX + 1000, Constants2.recY, Constants2.width + 50, Constants2.height + 50, "grey"));
+    gameObjects.push(new RectangleGameObject(Constants2.recX + 500, Constants2.recY, Constants2.width + 50, Constants2.height, Constants2.color));
+    //gameObjects.push(new RectangleGame)
     /*let circles = []
     let max = Constants.max;
     let x = Constants.x;
@@ -59,7 +63,7 @@
         circles.push(new CircleGameObject(toAdd.x,toAdd.y,toAdd.r,toAdd.s,toAdd.e,toAdd.c));
     }*/
 
-    let rectangles = []
+    /*let rectangles = []
     let max2 = 1;
     let recX = Constants2.recX;
     let recY = Constants2.recY;
@@ -148,9 +152,6 @@
         ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
         for(let gameObject of gameObjects) {
             gameObject.draw(ctx);
-        }
-        for(let rectangle of rectangles) {
-            rectangle.draw(ctx);
         }
         /*let k = 0;
         for(let bullet of bullets) {

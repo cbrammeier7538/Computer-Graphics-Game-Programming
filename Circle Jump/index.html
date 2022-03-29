@@ -22,12 +22,13 @@
     import {getCanvas} from "./Engine/scripts.js"
     import Time from "./Engine/Time.js"
     import Input from "./Engine/Input.js"
-    import CircleGameObject from "./Game/CircleGameObject.js";
+    //import CircleGameObject from "./Game/CircleGameObject.js";
     //import CircleUpdateComponent from "./Game/CircleUpdateComponent.js";
     //import RectangleDrawComponent from "./Engine/RectangleDrawComponent.js"
-    import RectangleGameObject from "./Game/RectangleGameObject.js";
+    //import RectangleGameObject from "./Game/RectangleGameObject.js";
     //import RectangleUpdateComponent from "./Game/RectangleUpdateComponent.js";
-
+    import Game from "./Engine/Game.js"
+    import MainScene from "./Game/MainScene.js"
     import Constants from "./Game/Constants.js"
     import Constants2 from "./Game/Constants2.js"
 
@@ -36,12 +37,14 @@
 
     let { canvas, ctx } = getCanvas();
 
-    let gameObjects = []
+    let scene = new MainScene();
+    Game.scenes.push(scene);
+    Game.curretSceneIndex = 0;
 
-    gameObjects.push(new CircleGameObject(Constants.x,Constants.y,Constants.r,Constants.s,Constants.e,Constants.c));
-    gameObjects.push(new RectangleGameObject(Constants2.recX,Constants2.recY,Constants2.width,Constants2.height,Constants2.color));
-    gameObjects.push(new RectangleGameObject(Constants2.recX + 1000, Constants2.recY, Constants2.width + 50, Constants2.height + 50, "grey"));
-    gameObjects.push(new RectangleGameObject(Constants2.recX + 500, Constants2.recY, Constants2.width + 50, Constants2.height, Constants2.color));
+    //gameObjects.push(new CircleGameObject(Constants.x,Constants.y,Constants.r,Constants.s,Constants.e,Constants.c));
+   // gameObjects.push(new RectangleGameObject(Constants2.recX,Constants2.recY,Constants2.width,Constants2.height,Constants2.color));
+    //gameObjects.push(new RectangleGameObject(Constants2.recX + 1000, Constants2.recY, Constants2.width + 50, Constants2.height + 50, "grey"));
+    //gameObjects.push(new RectangleGameObject(Constants2.recX + 500, Constants2.recY, Constants2.width + 50, Constants2.height, Constants2.color));
     //gameObjects.push(new RectangleGame)
     /*let circles = []
     let max = Constants.max;
@@ -119,12 +122,14 @@
         Input.update();
         update()
         draw()
+        remove();
         Time.timePassed += Time.secondsBetweenFrame;
     }
     function update(){
-        for(let gameObject of gameObjects) {
-            gameObject.update();
-        }
+        Game.scene().update();
+        //for(let gameObject of gameObjects) {
+            //gameObject.update();
+        //}
         /*let j = 0;
         for(let bullet of bullets){
         if(sisPressed){
@@ -144,15 +149,16 @@
         }*/
     }
     function draw(){
-        ctx.fillStyle = "black"
-        ctx.strokeStyle = "white"
-        ctx.lineWidth = 10
+        //ctx.fillStyle = "black"
+        //ctx.strokeStyle = "white"
+        //ctx.lineWidth = 10
 
-        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
-        for(let gameObject of gameObjects) {
-            gameObject.draw(ctx);
-        }
+        //ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        //ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
+        //for(let gameObject of gameObjects) {
+            //gameObject.draw(ctx);
+        //}
+        Game.scene().draw(ctx);
         /*let k = 0;
         for(let bullet of bullets) {
             let bullet = bullets[k];
@@ -169,6 +175,9 @@
             ctx.stroke();
             k++;
         }*/
+    }
+    function remove(){
+        Game.scene().remove();
     }
     setInterval(tick, Time.millisecondsBetweenFrames)
     </script>

@@ -1,18 +1,21 @@
 class Scene{
     constructor(title){
         this.title = title;
-        this.gameObjects = [];
     }
-    update(){
+    restart(){
+        this.gameObjects = [];
+        this.start();
+    }
+    update(ctx){
         for(let gameObject of this.gameObjects) {
-            gameObject.update();
+            gameObject.update(ctx);
         }
     }
     draw(ctx){
         ctx.fillStyle = "black"
         ctx.strokeStyle = "white"
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
+        ctx.strokeRect(0, 2, ctx.canvas.width, ctx.canvas.height);
 
         for(let gameObject of this.gameObjects){
             gameObject.draw(ctx);

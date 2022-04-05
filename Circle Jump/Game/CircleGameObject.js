@@ -10,7 +10,7 @@ class CircleGameObject extends GameObject{
         super();
         this.components.push(new Circle(this,x,y,r,s,e));
         this.components.push(new CircleDrawComponent(this, c, "white"));
-        this.components.push(new CircleUpdateComponent(this,x,y,r,s,e,c));
+        this.components.push(new CircleUpdateComponent(this));
     }
 }
 

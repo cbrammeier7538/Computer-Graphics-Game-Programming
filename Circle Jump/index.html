@@ -29,6 +29,7 @@
     //import RectangleUpdateComponent from "./Game/RectangleUpdateComponent.js";
     import Game from "./Engine/Game.js"
     import MainScene from "./Game/MainScene.js"
+    import StartScene from "./Game/StartScene.js"
     import Constants from "./Game/Constants.js"
     import Constants2 from "./Game/Constants2.js"
 
@@ -38,8 +39,10 @@
     let { canvas, ctx } = getCanvas();
 
     let scene = new MainScene();
+    let startScene = new StartScene();
+    Game.scenes.push(startScene);
     Game.scenes.push(scene);
-    Game.curretSceneIndex = 0;
+    Game.changeScene(0);
 
     //gameObjects.push(new CircleGameObject(Constants.x,Constants.y,Constants.r,Constants.s,Constants.e,Constants.c));
    // gameObjects.push(new RectangleGameObject(Constants2.recX,Constants2.recY,Constants2.width,Constants2.height,Constants2.color));
@@ -119,65 +122,12 @@
     
 
     function tick(){
+        Game.updateScene();
         Input.update();
-        update()
-        draw()
-        remove();
-        Time.timePassed += Time.secondsBetweenFrame;
-    }
-    function update(){
-        Game.scene().update();
-        //for(let gameObject of gameObjects) {
-            //gameObject.update();
-        //}
-        /*let j = 0;
-        for(let bullet of bullets){
-        if(sisPressed){
-            if(bullet.recX2 == 300)
-            {
-                while(bullet.recX2 != 1650){
-                bullet.recX2 += 10;
-                }
-            }
-            else if(bullet.recX2 == 1650)
-            {
-                while(bullet.recX2 != 300){
-                    bullet.recX2 -= 10;
-                }
-            }
-        }
-        }*/
-    }
-    function draw(){
-        //ctx.fillStyle = "black"
-        //ctx.strokeStyle = "white"
-        //ctx.lineWidth = 10
-
-        //ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        //ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
-        //for(let gameObject of gameObjects) {
-            //gameObject.draw(ctx);
-        //}
+        Game.scene().update(ctx);
         Game.scene().draw(ctx);
-        /*let k = 0;
-        for(let bullet of bullets) {
-            let bullet = bullets[k];
-            ctx.fillStyle = bullet.color2;
-            ctx.strokeStyle = "white"
-            ctx.beginPath()
-            ctx.rect(
-                bullet.recX2,
-                bullet.recY2,
-                bullet.width2,
-                bullet.height2
-            )
-            ctx.fill();
-            ctx.stroke();
-            k++;
-        }*/
-    }
-    function remove(){
         Game.scene().remove();
+        Time.timePassed += Time.secondsBetweenFrame;
     }
     setInterval(tick, Time.millisecondsBetweenFrames)
     </script>

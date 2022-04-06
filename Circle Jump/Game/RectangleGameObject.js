@@ -2,6 +2,7 @@ import GameObject from "../Engine/GameObject.js"
 import RectangleUpdateComponent from "./RectangleUpdateComponent.js";
 import Rectangle from "../Engine/Rectangle.js"
 import RectangleDrawComponent from "../Engine/RectangleDrawComponent.js";
+import Constants2 from "./Constants2.js"
 class RectangleGameObject extends GameObject{
     constructor(x,y,width,height,color){
         super();

@@ -5,7 +5,7 @@ import Constants from "./Constants.js";
 import Constants2 from "./Constants2.js";
 class MainScene extends Scene {
     constructor() {
-        super("Main Scene Level 1");
+        super("Main Circle Jump Scene");
     }
 
     start(){

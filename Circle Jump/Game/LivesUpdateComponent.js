@@ -3,7 +3,7 @@ import Component from "../Engine/Component.js"
 class LivesUpdateComponent extends Component {
     constructor(parent) {
         super(parent);
-        this.lives = 3;
+        this.lives = "Lives: 3";
     }
     update() {
         let text = this.parent.getComponent("Text");

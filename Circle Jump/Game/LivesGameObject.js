@@ -5,7 +5,7 @@ import TextDraw from "../Engine/TextDraw.js";
 class LivesGameObject extends GameObject{
     constructor(x,y){
         super();
-        this.components.push(new Text(this,x,y,"", "100px sans"));
+        this.components.push(new Text(this,x,y,"Lives x3", "100px sans"));
         this.components.push(new TextDraw(this, "blue", "orange"));
     }
 

@@ -11,6 +11,7 @@ import Constants2 from "./Constants2.js"
 
 
 
+
 let x = Constants.x;
 let y = Constants.y;
 let r = Constants.r;
@@ -32,10 +33,6 @@ class CircleUpdateComponent extends Component{
     update(){
 
 
-        let RectangleGameObject = Game.findByType("RectangleGameObject")[0];
-        let RectangleGameObject2 = Game.findByType("RectangleGameObject")[1];
-        let RectangleGameObject3 = Game.findByType("RectangleGameObject")[2];
-        let rectangle = RectangleGameObject.getComponent("Rectangle");
         let circle = this.parent.getComponent("Circle");
         let circleDraw = this.parent.getComponent("CircleDrawComponent");
         circleDraw.fillStyle = "red";
@@ -106,14 +103,6 @@ class CircleUpdateComponent extends Component{
             {
                 circle.y += 5;
             }
-        }
-        if(rectangle.x < circle.x && rectangle.x + rectangle.w > circle.x)
-        {
-        
-        }
-        else
-        {
-            Game.changeScene(0);
         }
     }
 }

@@ -6,93 +6,31 @@
 </head>
 <body>
     <canvas id = "canv"></canvas>
-    <script src = "Time.js"></script>
-    <script src = "Component.js"></script>
-    <script src = "GameObject.js"></script>
-    <script src = "RectangleDrawComponent.js"></script>
-    <script src = "RectangleUpdateComponent.js"></script>
-    <script src = "RectangleGameObject.js"></script>
-<script>
+<script type = "module">
     "use strict"
 
-    let wisPressed = false;
-    let aisPressed = false;
-    let sisPressed = false;
-    let disPressed = false;
-    document.addEventListener("keydown", logkeydown);
-    document.addEventListener("keyup", logkeyup);
-    function logkeydown(a){
-        if(a.key == "w")
-        {
-            wisPressed = true;
-        }
-        if(a.key == "a")
-        {
-            aisPressed = true;
-        }
-        if(a.key == "s")
-        {
-            sisPressed = true;
-        }
-        if(a.key == "d")
-        {
-            disPressed = true;
-        }
-    }
-    function logkeyup(a){
-        if(a.key == "w")
-        {
-            wisPressed = false;
-        }
-        if(a.key == "a")
-        {
-            aisPressed = false;
-        }
-        if(a.key == "s")
-        {
-            sisPressed = false;
-        }
-        if(a.key == "d")
-        {
-            disPressed = false;
-        }
-    }
-    let canvas = document.querySelector("#canv");
-    let ctx = canvas.getContext("2d");
+    import {getCanvas} from "./Engine/scripts.js"
+    import Time from "./Engine/Time.js"
+    import Input from "./Engine/Input.js"
+    import Game from "./Engine/Game.js"
+    import MainScene from "./Game/MainScene.js"
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    Input.attach(document);
 
-    let gameObjects = []
-    for(let i = 0; i < max; i++){
-        let toAdd = {};
-        toAdd.x = x;
-        toAdd.y = y;
-        toAdd.width = width;
-        toAdd.height = height;
-        toAdd.color = color;
-        gameObjects.push(new RectangleGameObject(toAdd.x,toAdd.y,toAdd.width,toAdd.height,toAdd.color));
-    }
+
+    let { canvas, ctx } = getCanvas();
+
+    let scene = new MainScene();
+    Game.scenes.push(scene);
+
+    
     function tick(){
-        update()
-        draw()
+        Game.updateScene();
+        Input.update();
+        Game.scene().update(ctx);
+        Game.scene().draw(ctx);
+        Game.scene().remove();
         Time.timePassed += Time.secondsBetweenFrame;
-    }
-    function update(){
-        for(let rectangle of gameObjects){
-            rectangle.update();
-        }
-    }
-    function draw(){
-        ctx.fillStyle = "white"
-        ctx.strokeStyle = "black"
-        ctx.lineWidth = 5
-
-        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        ctx.strokeRect(0, 1, ctx.canvas.width, ctx.canvas.height);
-        for(let rectangle of gameObjects){
-            rectangle.draw(ctx);
-        }
     }
     setInterval(tick, Time.millisecondsBetweenFrames)
 

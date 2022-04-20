@@ -12,8 +12,8 @@ class Scene{
         }
     }
     draw(ctx){
-        ctx.fillStyle = "black"
-        ctx.strokeStyle = "white"
+        ctx.fillStyle = "white"
+        ctx.strokeStyle = "black"
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         ctx.strokeRect(0, 2, ctx.canvas.width, ctx.canvas.height);
 

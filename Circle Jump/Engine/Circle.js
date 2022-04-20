@@ -11,4 +11,4 @@ class Circle extends Component {
     }
 }
 
-export default Circle
+export default Circle;

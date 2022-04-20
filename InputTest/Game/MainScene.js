@@ -1,14 +1,19 @@
 import Scene from "../Engine/Scene.js"
 import RectangleGameObject from "./RectangleGameObject.js";
-import CircleGameObject from "./CircleGameObject.js";
+import ScoreGameObject from "./ScoreGameObject.js";
+
 
 class MainScene extends Scene {
     constructor() {
-        super("Main Circle Jump Scene");
+        super("Main Rectangle Survival");
     }
 
-    start(){
-        this.gameObjects.push(new RectangleGameObject(500, 500, 50, 50, "black"));
+    start()
+    {
+        let player = new RectangleGameObject(500,500,50,50,"black");
+        this.gameObjects.push(player);
+        let score = new ScoreGameObject(100, 30);
+        this.gameObjects.push(score);
     }
 }
 

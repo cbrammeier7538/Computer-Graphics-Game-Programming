@@ -13,8 +13,8 @@ class RectangleDrawComponent extends Component {
         ctx.strokeStyle = this.strokeStyle;
         ctx.beginPath()
             ctx.rect(
-                rectangle.recX,
-                rectangle.recY,
+                rectangle.x,
+                rectangle.y,
                 rectangle.width,
                 rectangle.height,
             )

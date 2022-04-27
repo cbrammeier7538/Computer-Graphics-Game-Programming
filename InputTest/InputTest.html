@@ -10,7 +10,7 @@
     "use strict"
 
     import {getCanvas} from "./Engine/scripts.js"
-    import Time from "./Engine/Time.js"
+    import time from "./Engine/time.js"
     import Input from "./Engine/Input.js"
     import Game from "./Engine/Game.js"
     import MainScene from "./Game/MainScene.js"
@@ -31,9 +31,9 @@
         Game.scene().update(ctx);
         Game.scene().draw(ctx);
         Game.scene().remove();
-        Time.timePassed += Time.secondsBetweenFrame;
+        time.timePassed += time.secondsBetweenFrame;
     }
-    setInterval(tick, Time.millisecondsBetweenFrames)
+    setInterval(tick, time.millisecondsBetweenFrames)
 
 
     </script>

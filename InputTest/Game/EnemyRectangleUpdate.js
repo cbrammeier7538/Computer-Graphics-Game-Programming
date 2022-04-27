@@ -1,5 +1,5 @@
 import Component from "../Engine/Component.js"
-import Time from "../Engine/time.js"
+import time from "../Engine/time.js"
 import Game from "../Engine/Game.js"
 import Input from "../Engine/Input.js"
 

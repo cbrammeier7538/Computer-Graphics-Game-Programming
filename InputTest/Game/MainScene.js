@@ -2,7 +2,7 @@ import Scene from "../Engine/Scene.js"
 import EnemyRectangle from "./EnemyRectangle.js";
 import RectangleGameObject from "./RectangleGameObject.js";
 import ScoreGameObject from "./ScoreGameObject.js";
-import Time from "./time.js";
+
 
 
 class MainScene extends Scene {

@@ -18,6 +18,9 @@ class RectangleUpdateComponent extends Component{
         let rectangle = this.parent.getComponent("Rectangle");
         let rectangleDraw = this.parent.getComponent("RectangleDrawComponent");
         
+        
+        rectangle.width = this.width;
+        rectangle.height = this.height;
 
         rectangleDraw.fillStyle = "black"
         if(Input.keys["w"] == true){

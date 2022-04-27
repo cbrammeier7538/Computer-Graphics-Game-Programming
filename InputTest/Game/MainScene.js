@@ -1,6 +1,8 @@
 import Scene from "../Engine/Scene.js"
+import EnemyRectangle from "./EnemyRectangle.js";
 import RectangleGameObject from "./RectangleGameObject.js";
 import ScoreGameObject from "./ScoreGameObject.js";
+import Time from "./time.js";
 
 
 class MainScene extends Scene {
@@ -10,10 +12,9 @@ class MainScene extends Scene {
 
     start()
     {
-        let player = new RectangleGameObject(500,500,50,50,"black");
-        this.gameObjects.push(player);
-        let score = new ScoreGameObject(100, 30);
-        this.gameObjects.push(score);
+        this.gameObjects.push(new RectangleGameObject(100,500,50,50,"black"));
+        this.gameObjects.push(new EnemyRectangle(500,500,50,50,"red"));
+        this.gameObjects.push(new ScoreGameObject(100, 100));
     }
 }
 

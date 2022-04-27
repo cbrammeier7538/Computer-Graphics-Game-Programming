@@ -1,9 +1,7 @@
 import Game from "../Engine/Game.js"
 class Scene{
-    constructor(title, fillColor = "white", strokeColor = "black"){
+    constructor(title){
         this.title = title;
-        this.fillColor = fillColor;
-        this.strokeColor = strokeColor;
     }
     restart(){
         this.gameObjects = [];
@@ -15,8 +13,8 @@ class Scene{
         }
     }
     draw(ctx){
-        ctx.fillStyle = this.fillColor;
-        ctx.strokeStyle = this.strokeColor;
+        ctx.fillStyle = "white";
+        ctx.strokeStyle = "black";
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         ctx.strokeRect(0, 2, ctx.canvas.width, ctx.canvas.height);
 

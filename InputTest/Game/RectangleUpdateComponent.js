@@ -4,6 +4,7 @@ import time from "../Engine/time.js"
 import Game from "../Engine/Game.js"
 import Input from "../Engine/Input.js"
 import Collisions from "../Engine/Collisions.js"
+import EnemyRectangle from "./EnemyRectangle.js"
 
 
 class RectangleUpdateComponent extends Component{
@@ -18,9 +19,7 @@ class RectangleUpdateComponent extends Component{
     update() {
         let rectangle = this.parent.getComponent("Rectangle");
         let rectangleDraw = this.parent.getComponent("RectangleDrawComponent");
-        let EnemyRectangle = Game.findByType("EnemyRectangle")[0];
-        let rectangle2 = EnemyRectangle.getComponent("Rectangle");
-        
+        let EnemyRectangle = Game.findByType("EnemyRectangle");
         
         rectangle.width = this.width;
         rectangle.height = this.height;
@@ -70,9 +69,13 @@ class RectangleUpdateComponent extends Component{
             rectangleDraw.fillStyle = "orange";
             }
         }
-        if(Collisions.inCollision(rectangle, rectangle2))
+        for(let i = 0; i < EnemyRectangle.length; i++)
         {
+            let rectangle2 = EnemyRectangle.getComponent("Rectangle");
+            if(Collisions.inCollision(rectangle, rectangle2))
+            {
             rectangleDraw.fillStyle = "red"
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ class RectangleUpdateComponent extends Component{
     update() {
         let rectangle = this.parent.getComponent("Rectangle");
         let rectangleDraw = this.parent.getComponent("RectangleDrawComponent");
-        let EnemyRectangle = Game.findByType("EnemyRectangle");
+        let EnemyRectangle = Game.findByType("EnemyRectangle")[0];
         let rectangle2 = EnemyRectangle.getComponent("Rectangle");
         
         
@@ -27,20 +27,48 @@ class RectangleUpdateComponent extends Component{
 
         rectangleDraw.fillStyle = "black"
         if(Input.keys["w"] == true){
+            if(rectangle.y == 0)
+            {
+                rectangleDraw.fillStyle = "green";
+            }
+            else
+            {
             rectangle.y -= 5;
-            rectangleDraw.fillStyle = "green"
+            rectangleDraw.fillStyle = "green";
+            }
         }
         if(Input.keys["a"] == true){
+            if(rectangle.x == 0)
+            {
+                rectangleDraw.fillStyle = "yellow";
+            }
+            else
+            {
             rectangle.x -= 5;
-            rectangleDraw.fillStyle = "yellow"
+            rectangleDraw.fillStyle = "yellow";
+            }
         }
         if(Input.keys["s"] == true){
+            if(rectangle.y == 925)
+            {
+                rectangleDraw.fillStyle = "blue";
+            }
+            else
+            {
             rectangle.y += 5;
-            rectangleDraw.fillStyle = "blue"
+            rectangleDraw.fillStyle = "blue";
+            }
         }
         if(Input.keys["d"] == true){
+            if(rectangle.x == 1500)
+            {
+                rectangleDraw.fillStyle = "orange";
+            }
+            else
+            {
             rectangle.x += 5;
-            rectangleDraw.fillStyle = "red"
+            rectangleDraw.fillStyle = "orange";
+            }
         }
         if(Collisions.inCollision(rectangle, rectangle2))
         {

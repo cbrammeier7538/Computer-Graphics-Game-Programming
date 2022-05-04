@@ -8,14 +8,12 @@ import time from "../Engine/time.js";
 
 class MainScene extends Scene {
     constructor() {
-        super("Main Rectangle Survival");
+        super("Main Tank Survival");
     }
 
     start()
     {
-        this.gameObjects.push(new RectangleGameObject(100,500,50,50,"black"));
-        this.gameObjects.push(new EnemyRectangle(500,500,50,50,"red"));
-        this.gameObjects.push(new ScoreGameObject(100, 100));
+    
     }
 }
 

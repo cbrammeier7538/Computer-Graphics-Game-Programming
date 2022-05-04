@@ -71,10 +71,11 @@ class RectangleUpdateComponent extends Component{
         }
         for(let i = 0; i < EnemyRectangle.length; i++)
         {
-            let rectangle2 = EnemyRectangle.getComponent("Rectangle");
-            if(Collisions.inCollision(rectangle, rectangle2))
+            let rectangleGameObject = EnemyRectangle[i];
+            let rectangleComponent = rectangleGameObject.getComponent("Rectangle");
+            if(Collisions.inCollision(rectangle, rectangleComponent))
             {
-            rectangleDraw.fillStyle = "red"
+                Game.changeScene(1);
             }
         }
     }

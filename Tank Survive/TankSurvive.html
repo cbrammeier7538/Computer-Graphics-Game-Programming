@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rectangle Move</title>
+    <title>Tank Survive</title>
     <link href = "./style.css" rel"stylesheet">
 </head>
 <body>
@@ -14,7 +14,6 @@
     import Input from "./Engine/Input.js"
     import Game from "./Engine/Game.js"
     import MainScene from "./Game/MainScene.js"
-    import GameOverScene from "./Game/GameOverScene.js"
 
     Input.attach(document);
 
@@ -22,9 +21,7 @@
     let { canvas, ctx } = getCanvas();
 
     let scene = new MainScene();
-    let gameOver = new GameOverScene();
     Game.scenes.push(scene);
-    Game.scenes.push(gameOver);
     Game.changeScene(0);
 
     

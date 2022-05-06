@@ -3,7 +3,7 @@ import Text from "../engine/Text.js";
 import TextDraw from "../engine/TextDraw.js";
 import GameOverUpdate from "./GameOverUpdate.js";
 
-class GameOverObject extends GameObject {
+class GameOverRObject extends GameObject {
     constructor(x,y)
     {
         super();
@@ -13,10 +13,10 @@ class GameOverObject extends GameObject {
     }
     start()
     {
-        this.components.push(new Text(this,this.x,this.y,"GAME OVER", "150px sans"));
+        this.components.push(new Text(this,this.x,this.y,"Hit R to Retry", "100px sans"));
         this.components.push(new TextDraw(this, "black","white"));
         this.components.push(new GameOverUpdate(this));
     }
 }
 
-export default GameOverObject;
+export default GameOverRObject;

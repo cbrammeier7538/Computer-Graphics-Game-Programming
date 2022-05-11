@@ -2,10 +2,12 @@ import Component from "../Engine/Component.js"
 import time from "../Engine/time.js"
 import Game from "../Engine/Game.js"
 import Input from "../Engine/Input.js"
-import EnemyRectangle from "./EnemyRectangle.js"
+import Zombieright from "./Zombieright.js"
+import Collisions from "../Engine/Collisions.js"
+import Bullet from "./Bullet.js"
 
 
-class EnemyRectangleUpdate extends Component{
+class ZombierightUpdate extends Component{
     constructor(parent, x, y, width, height, color){
         super(parent);
         this.x = x;
@@ -13,8 +15,9 @@ class EnemyRectangleUpdate extends Component{
         this.width = width;
         this.height = height;
         this.color = color;
-        this.speed = 5;
+        this.speed = 1;
         this.time = 0;
+        this.dead = 0;
         this.counter = 15;
         this.buffer = 1;
     }
@@ -22,30 +25,42 @@ class EnemyRectangleUpdate extends Component{
     {
         let rectangle = this.parent.getComponent("Rectangle");
         let rectangleDraw = this.parent.getComponent("RectangleDrawComponent");
+        let Bullet = Game.findByType("Bullet");
+
         rectangle.width = this.width;
         rectangle.height = this.height;
         rectangleDraw.color = this.color;
-        if(rectangle.x != 0)
+        if(this.dead == 0)
         {
             rectangle.x -= this.speed;
         }
-        else if(rectangleDraw.color != "black")
-        {
-            rectangle.x = 1800;
-            rectangle.y = Math.floor(Math.random() * (920 - 0 + 1)) + 0;
-        }
         else
         {
-            rectangle.x = -10;
+            rectangle.x = -50;
         }
         this.time += time.secondsBetweenFrame
         if(this.time > this.counter)
         {
-            Game.scene().gameObjects.push(new EnemyRectangle(1800,500,50,50,"red"));
+            let max = 525
+            let min = 375
+            let difference = max - min;
+            let rand = Math.random();
+            rand = Math.floor(rand * difference);
+            rand = rand + min;
+            Game.scene().gameObjects.push(new Zombieright(1900,rand,50,50,"lime"));
             this.counter += 15 + this.buffer;
             this.buffer += 5;
+        }
+        for(let i = 0; i < Bullet.length; i++)
+        {
+            let rectangleGameObject = Bullet[i];
+            let rectangleComponent = rectangleGameObject.getComponent("Rectangle");
+            if(Collisions.inCollision(rectangle, rectangleComponent))
+            {
+                this.dead = 1;
+            }
         }
         
     }
 }
-export default EnemyRectangleUpdate;
+export default ZombierightUpdate;

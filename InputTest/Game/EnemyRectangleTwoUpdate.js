@@ -14,7 +14,7 @@ class EnemyRectangleUpdate extends Component{
         this.width = width;
         this.height = height;
         this.color = color;
-        this.speed = 1;
+        this.speed = 3;
         this.time = 0;
         this.counter = 30;
         this.buffer = 1;
@@ -31,7 +31,7 @@ class EnemyRectangleUpdate extends Component{
         {
             if(this.flag == 0)
             {
-                if(rectangle.y == 0)
+                if(rectangle.y < 0)
                 {
                     this.flag = 1;
                 }
@@ -43,7 +43,7 @@ class EnemyRectangleUpdate extends Component{
             }
             if(this.flag == 1)
             {
-                if(rectangle.y == 920)
+                if(rectangle.y > 920)
                 {
                     this.flag = 0;
                 }

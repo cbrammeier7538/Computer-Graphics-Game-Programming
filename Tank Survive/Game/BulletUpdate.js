@@ -2,50 +2,54 @@ import Component from "../Engine/Component.js"
 import time from "../Engine/time.js"
 import Game from "../Engine/Game.js"
 import Input from "../Engine/Input.js"
-import EnemyRectangle from "./EnemyRectangle.js"
+import Bullet from "./Bullet.js"
+import RectangleGameObject from "./RectangleGameObject.js"
 
 
-class EnemyRectangleUpdate extends Component{
-    constructor(parent, x, y, width, height, color){
+class BulletUpdate extends Component
+{
+    constructor(parent, x, y, width, height, color)
+    {
         super(parent);
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.color = color;
-        this.speed = 5;
+        this.speed = 10;
         this.time = 0;
-        this.counter = 15;
+        this.counter = 45;
         this.buffer = 1;
+        this.flag = 0;
     }
     update() 
     {
         let rectangle = this.parent.getComponent("Rectangle");
         let rectangleDraw = this.parent.getComponent("RectangleDrawComponent");
+        let playerRectangle = Game.findByType("RectangleGameObject")[0];
+        let rectangleComponent = playerRectangle.getComponent("Rectangle");
+
         rectangle.width = this.width;
         rectangle.height = this.height;
         rectangleDraw.color = this.color;
-        if(rectangle.x != 0)
+
+        if(rectangle.x < rectangleComponent.x)
         {
             rectangle.x -= this.speed;
         }
-        else if(rectangleDraw.color != "black")
+        else if(rectangle.x > rectangleComponent.x + 40)
         {
-            rectangle.x = 1800;
-            rectangle.y = Math.floor(Math.random() * (920 - 0 + 1)) + 0;
+            rectangle.x += this.speed;
         }
-        else
+        else if(rectangle.y > rectangleComponent.y)
         {
-            rectangle.x = -10;
+            rectangle.y += this.speed;
         }
-        this.time += time.secondsBetweenFrame
-        if(this.time > this.counter)
+        else if(rectangle.y < rectangleComponent.y)
         {
-            Game.scene().gameObjects.push(new EnemyRectangle(1800,500,50,50,"red"));
-            this.counter += 15 + this.buffer;
-            this.buffer += 5;
+            rectangle.y -= this.speed;
         }
-        
     }
 }
-export default EnemyRectangleUpdate;
+
+export default BulletUpdate;
